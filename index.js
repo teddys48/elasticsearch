@@ -4,7 +4,13 @@ const dotenv = require("dotenv");
 const { Client } = require("@elastic/elasticsearch");
 dotenv.config();
 
-const { port, elastic_node, elastic_username, elastic_password } = process.env;
+const {
+  port,
+  elastic_node,
+  elastic_username,
+  elastic_password,
+  elastic_fingerprint,
+} = process.env;
 
 const client = new Client({
   node: elastic_node,
@@ -12,8 +18,7 @@ const client = new Client({
     username: elastic_username,
     password: elastic_password,
   },
-  caFingerprint:
-    "41baf6545a5762cbe4e244425d0fd1abcba1b7ca9a0c8b74dc9fe236c142e6b6",
+  caFingerprint: elastic_fingerprint,
   tls: {
     rejectUnauthorized: false,
   },
